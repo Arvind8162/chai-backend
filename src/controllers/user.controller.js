@@ -1,5 +1,5 @@
 //part -1 finished
-//part -2 =>
+//part -2 => 1:38:51
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiErrors.js";
 import { User } from "../models/user.model.js";
@@ -183,7 +183,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
   const incomingRefreshToken =
     req.cookies.refreshToken || req.body.refreshToken;
 
-  if (incomingRefreshToken) {
+  if (!incomingRefreshToken) {
     throw new ApiError(401, "unauthorized request");
   }
 
