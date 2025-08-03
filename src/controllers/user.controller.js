@@ -1,5 +1,5 @@
 //part -1 finished
-//part -2 => 1:2:46
+//part -2 => 1:2:46  // logout not working
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiErrors.js";
 import { User } from "../models/user.model.js";
@@ -104,7 +104,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const { email, username, password } = req.body;
   if (!username && !email) {
-    throw new ApiError(400, "username and email is  required");
+    throw new ApiError(400, "username or email is  required");
   }
   /* here is an alternate of above code based on logic discuss 
   if(!(username || email)){
@@ -116,7 +116,7 @@ const loginUser = asyncHandler(async (req, res) => {
     $or: [{ username }, { email }],
   });
 
-  if (!User) {
+  if (!user) {
     throw new ApiError(404, "User does not exist");
   }
 
